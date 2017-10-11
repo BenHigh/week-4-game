@@ -1,0 +1,73 @@
+
+body {
+	background-image: url("../img/snowars.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: #aaa;
+	width: 1920px;
+	height: 1080px;
+}
+
+.image{
+	position: absolute;
+	display: block;
+	margin: auto;
+}
+
+#luke{
+	left: 25px;
+	top: 25px;
+}
+
+#han{
+	left: 25px;
+	bottom: 25px;
+}
+
+#jarjar{
+	right: 25px;
+	top: 25px;
+}
+
+#vader{
+	right: 25px;
+	bottom: 25px;
+}
+
+#mainContain{
+	text-align: center;
+	position: relative;
+	width: 1920px;
+	height: 100%;
+}
+
+.stats{
+	position: absolute;
+	background: #ccc;
+	opacity: .0;
+	filter: alpha(opacity=50);
+	bottom: 50px;
+	width: 300px;
+	padding: 15px;
+	z-index: -1;
+}
+
+#playerStats{
+	left: 30px;
+}
+
+#opStats{
+	right: 802px;
+}
+
+.hp{
+	height: 50px;
+	background-color: #4CAF50;
+	overflow: hidden;
+	left: 0;
+}
+
+#plHP
+
+
+
