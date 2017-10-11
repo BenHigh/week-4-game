@@ -31,8 +31,8 @@ var vader = {
 var jarjar = {
 	id: "jarjar",
 	name: "Jar Jar",
-	hp: 500,
-	full: 500,
+	hp: 250,
+	full: 250,
 	ap: 3,
 	base: 3,
 	cap: 9
@@ -72,7 +72,7 @@ function chooseFight(){
 function fight(){
 
 	updateStats();
-	$("#instruct").html("<h3>You have chosen to fight: " + enemy.name + "</h3>")
+	$("#instruct").html("<h3>You have chosen to fight " + enemy.name + "</h3>")
 	$("#instruct").append("<br><button class='btn btn-danger' id='attack' data-toggle='confirmation'>Attack</button>");
 
 	$("#" + enemy.id).css({"right": "850px", "top": "300px"});
@@ -88,7 +88,6 @@ function fight(){
 		updateStats();
 	});
 
-	return;
 }
 
 
@@ -100,17 +99,15 @@ function updateStats(){
 	if(enemy.hp <= 0){
 		fighting = false;
 		youWon();
-		return;
 	}else if(player.hp <= 0){
 		fighting = false;
 		youDed();
-		return;
 	}
 }
 
 function youDed(){
 	$("#" + player.id).css("display", "none");
-	$("#instruct").html("<h3>You lose</h3>")
+	$("#instruct").html("<h3>You lose</h3>");
 	$("#instruct").append("<br><button class='btn btn-warning' id='restart' data-toggle='confirmation'>Restart</button>");
 
 
@@ -122,22 +119,21 @@ function youDed(){
 
 function youWon(){
 	$("#" + enemy.id).css("display", "none");
-	$("#instruct").html("<h3>Congratulations, you defeated " + enemy.name + "!</h3>")
+	$("#instruct").html("<h3>Congratulations, you defeated " + enemy.name + "!</h3>");
 	$("#instruct").append("<h3>Select your next contestant</h3>");
 	defeated++;
 
 	if(defeated === 3){
+		$("#" + player.id).css("left", "867px").css("border", "10px solid gold");
 		$("#instruct").html("<h2>You have defeated all who stood before you!!!</h2>");
 		$(".stats").css("opacity", "0")
 		$("#instruct").append("<br><button class='btn btn-warning' id='restart' data-toggle='confirmation'>Restart</button>");
-
 
 
 		$("#restart").click(function(){
 			location.reload();
 		});
 	}
-	return;
 
 }
 
