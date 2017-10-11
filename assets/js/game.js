@@ -1,11 +1,11 @@
 var luke = {
 	id: "luke",
 	name: "Luke",
-	hp: 100,
-	full: 100,
-	ap: 12,
-	base: 12,
-	cap: 24
+	hp: 120,
+	full: 120,
+	ap: 15,
+	base: 15,
+	cap: 25
 };
 
 var han = {
@@ -21,21 +21,21 @@ var han = {
 var vader = {
 	id: "vader",
 	name: "Vader",
-	hp: 100,
-	full: 100,
-	ap: 15,
-	base: 15,
-	cap: 25
+	hp: 80,
+	full: 80,
+	ap: 20,
+	base: 20,
+	cap: 27
 };
 
 var jarjar = {
 	id: "jarjar",
 	name: "Jar Jar",
-	hp: 250,
-	full: 250,
+	hp: 300,
+	full: 300,
 	ap: 3,
 	base: 3,
-	cap: 9
+	cap: 6
 };
 
 var player;
@@ -47,6 +47,8 @@ var enemies = [];
 var started = false;
 
 var fighting = false;
+
+var dead = false;
 
 var defeated = 0;
 
@@ -82,9 +84,10 @@ function fight(){
 
 
 	$("#attack").click(function(){
+		updateStats();
 		enemy.hp -= player.ap;
 		player.ap += player.base;
-		player.hp -= (Math.abs(enemy.hp/enemy.full)*1.5*enemy.cap);
+		player.hp -= (Math.abs(enemy.hp/enemy.full)*2*enemy.cap);
 		updateStats();
 	});
 
@@ -99,13 +102,15 @@ function updateStats(){
 	if(enemy.hp <= 0){
 		fighting = false;
 		youWon();
-	}else if(player.hp <= 0){
+	}
+	if(player.hp <= 0){
 		fighting = false;
 		youDed();
 	}
 }
 
 function youDed(){
+	dead = true;
 	$("#" + player.id).css("display", "none");
 	$("#instruct").html("<h3>You lose</h3>");
 	$("#instruct").append("<br><button class='btn btn-warning' id='restart' data-toggle='confirmation'>Restart</button>");
@@ -145,7 +150,7 @@ $(document).ready(function() {
 			player = luke;
 			enemies = [han, jarjar, vader];
 			startGame();
-		}else if(!fighting && player.id !== $(this).attr("id")){
+		}else if(!fighting && player.id !== $(this).attr("id") && !dead){
 			enemy = luke;
 			fight();
 		}
@@ -156,7 +161,7 @@ $(document).ready(function() {
 			player = han;
 			enemies = [luke, jarjar, vader];
 			startGame();
-		}else if(!fighting && player.id !== $(this).attr("id")){
+		}else if(!fighting && player.id !== $(this).attr("id") && !dead){
 			enemy = han;
 			fight();
 		}
@@ -167,7 +172,7 @@ $(document).ready(function() {
 			player = jarjar;
 			enemies = [luke, han, vader];
 			startGame();
-		}else if(!fighting && player.id !== $(this).attr("id")){
+		}else if(!fighting && player.id !== $(this).attr("id") && !dead){
 			enemy = jarjar;
 			fight();
 		}
@@ -178,7 +183,7 @@ $(document).ready(function() {
 			player = vader;
 			enemies = [luke, han, jarjar];
 			startGame();
-		}else if(!fighting && player.id !== $(this).attr("id")){
+		}else if(!fighting && player.id !== $(this).attr("id") && !dead){
 			enemy = vader;
 			fight();
 		}

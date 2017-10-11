@@ -8,6 +8,11 @@ body {
 	height: 1080px;
 }
 
+.btn{
+	font-size: 27px;
+	padding: 27px;
+}
+
 .image{
 	position: absolute;
 	display: block;
